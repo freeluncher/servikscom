@@ -26,6 +26,8 @@
                                 Logout
                             </button>
                         </form>
+                        <a href="{{ route('medical_records.index') }}"
+                            class="text-secondary no-underline hover:underline pr-4">Rekam Medis</a>
                     @else
                         <a href="{{ route('login') }}" class="text-secondary no-underline hover:underline pr-4">Login</a>
                         <a href="{{ route('register') }}" class="text-secondary no-underline hover:underline">Register</a>

@@ -17,6 +17,9 @@
             <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
 
                 <div class="max-w-md mx-auto">
+                    <div class="shrink-0">
+                        <img class="h-12 w-12" src="{{ asset('iconApp.svg') }}" alt="Siserviks Logo">
+                    </div>
                     <div>
                         <h1 class="text-2xl font-semibold">Login</h1>
                     </div>
