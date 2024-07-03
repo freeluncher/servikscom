@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -60,7 +63,34 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        // Validate request and register user
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        event(new Registered($user));
+
+        return redirect()->route('login')->with('success', 'Registration successful. Please login.');
+    }
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'string', 'in:doctor,patient'],
+            'nik' => ['nullable', 'string', 'max:16', 'unique:users'],
+        ]);
+    }
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => $data['role'],
+            'nik' => $data['role'] === 'patient' ? $data['nik'] : null,
+            'is_approved' => $data['role'] === 'patient' ? true : false,
+        ]);
     }
 
     public function showResetForm()

@@ -44,13 +44,14 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
     //--------------- Route Admin Controllers -------------------------------------------------
     Route::middleware(['role:admin'])->group(function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::post('admin/approve_doctor/{user}', [AdminController::class, 'approveDoctor'])->name('admin.approve_doctor');
         Route::resource('/admin/patients', AdminController::class, ['as' => 'admin'])->only(['index', 'show', 'destroy']);
         Route::resource('/admin/doctors', AdminController::class, ['as' => 'admin'])->only(['index', 'show', 'destroy']);
         Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
         Route::post('/admin/settings', [AdminController::class, 'updateSettings']);
     });
     //--------------- Route Doctor Controllers -------------------------------------------------
-    Route::middleware(['role:doctor'])->group(function () {
+    Route::middleware(['role:doctor', 'check_approval'])->group(function () {
         Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor.dashboard');
         Route::resource('/doctor/patients', DoctorController::class, ['as' => 'doctor'])->only(['index', 'show']);
         Route::resource('/doctor/medical-records', MedicalRecordController::class, ['as' => 'doctor']);

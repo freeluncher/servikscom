@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\RoleMiddleware::class,
         'check.auth' => \App\Http\Middleware\CheckIfAuthenticated::class,
         'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class,
+        'check_approval' => \App\Http\Middleware\CheckDoctorApproval::class,
     ];
 }

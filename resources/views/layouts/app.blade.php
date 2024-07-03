@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Dashboard')</title>
+    <script src="https://kit.fontawesome.com/79638a8e95.js" crossorigin="anonymous"></script>
     @vite('resources/css/app.css')
     <style>
         /* Custom styles for transitions */
@@ -25,28 +27,35 @@
             max-height: 100vh;
         }
     </style>
+
 </head>
 
 <body class="flex flex-col min-h-screen">
     <div class="flex flex-1">
         <aside id="sidebar"
-            class="bg-primary drop-shadow-lg text-secondary w-64 min-h-screen hidden md:block transition-transform transform">
+            class="bg-primary shadow-slate-900/15 shadow-lg shadow-x-2 text-secondary w-64 min-h-screen hidden md:block transition-transform transform">
             <nav class="p-4">
                 <ul>
                     <li class="mb-2"><a href="#"
-                            class="block p-2 font-medium hover:bg-accent1 hover:text-accent2">Home</a>
+                            class="block p-2 font-medium hover:bg-accent1 hover:text-accent2 hover:rounded-md">Home</a>
                     </li>
                     <li class="mb-2">
-                        <button class="w-full text-left p-2 hover:bg-accent1 hover:text-accent2"
-                            onclick="toggleSubMenu('aboutSubMenu')">Pasien</button>
+                        <div class="mb-2">
+                            <i class="fa-solid fa-hospital-user"></i><button
+                                class="w-full text-left p-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md"
+                                onclick="toggleSubMenu('aboutSubMenu')">Pasien</button>
+                        </div>
                         <ul id="aboutSubMenu"
                             class="pl-4 max-h-0 transition-max-height duration-300 ease-in-out overflow-hidden">
                             <li class="mb-2"><a href="#"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Tambah Pasien</a></li>
+                                    class="block p-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">Tambah
+                                    Pasien</a></li>
                             <li class="mb-2"><a href="#"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Data Pasien</a></li>
+                                    class="block p-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">Data
+                                    Pasien</a></li>
                             <li class="mb-2"><a href="{{ route('medical_records.index') }}"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Rekam Medis</a></li>
+                                    class="block p-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">Rekam
+                                    Medis</a></li>
                         </ul>
                     </li>
                     <li class="mb-2">
@@ -61,7 +70,7 @@
                         </ul>
                     </li>
                     <li class="mb-2"><a href="#"
-                            class="block p-2 hover:bg-accent1 hover:text-accent2">Contact</a></li>
+                            class="block p-2 hover:bg-accent1 hover:text-accent2">Schedule</a></li>
                 </ul>
             </nav>
             <div class="container mx-auto my-auto w-50 p-2">
@@ -91,7 +100,7 @@
             @endauth
         </aside>
 
-        <main class="flex-1 p-4">
+        <main class="flex-1 p-4 bg-gray-200">
             <nav id="mobileNav" class="absolute top-0 left-0 right-0 bg-primary text-secondary p-4 hidden md:hidden">
                 <button id="hamburgerBtn" class="bg-blue-500 text-white p-2 rounded">Menu</button>
                 <ul id="mobileMenu" class="mt-4 hidden transition-opacity opacity-0">
@@ -177,6 +186,11 @@
             sidebar.classList.remove('hidden', '-translate-x-full');
             mobileNav.classList.add('hidden');
         }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     </script>
     @vite('resources/js/app.js')
 </body>
