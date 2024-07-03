@@ -11,7 +11,7 @@ class CheckDoctorApproval
     {
         if (Auth::check() && Auth::user()->role === 'doctor' && !Auth::user()->is_approved) {
             Auth::logout();
-            return redirect()->route('login')->with('error', 'Your account is not approved yet.');
+            return redirect()->route('login')->with('message', 'Your account is not approved yet. Please, contact your administrator');
         }
 
         return $next($request);

@@ -34,10 +34,14 @@ Route::middleware(['check.auth'])->group(function () {
 //----------------------- Route Logout --------------------------------------------
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 //------------------------- Route Password Management ----------------------------------
-Route::get('/password/reset', [AuthController::class, 'showResetForm'])->name('password.request');
-Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::post('/password/reset', [AuthController::class, 'reset'])->name('password.update');
-
+// Route untuk menampilkan form forgot password
+Route::get('password/forgot', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
+// Route untuk mengirim link reset password
+Route::post('password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+// Route untuk menampilkan form reset password (memerlukan token)
+Route::get('password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
+// Route untuk mengupdate password
+Route::post('password/reset', [AuthController::class, 'reset'])->name('password.update');
 //--------------- Route Prevent Tombol Back Browser --------------------------------------
 Route::middleware(['auth', 'prevent-back-history'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

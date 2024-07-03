@@ -9,19 +9,20 @@
 </head>
 
 <body>
-    <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        @if (session('message'))
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong class="font-bold">Warning!</strong>
-                <span class="block sm:inline">{{ session('message') }}</span>
-            </div>
-        @endif
+    <section id="login-page" class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
             <div
                 class="absolute inset-0 bg-gradient-to-r from-secondary to-accent1 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
             </div>
-            <div class="relative px-4 py-10 bg-primary shadow-lg sm:rounded-3xl sm:p-10">
+            <div class="relative px-2 py-10 bg-primary shadow-lg sm:rounded-3xl sm:p-10">
                 <div class="max-w-md mx-auto">
+                    @if (session('message'))
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+                            role="alert">
+                            <strong class="font-bold">Warning!</strong>
+                            <span class="block sm:inline">{{ session('message') }}</span>
+                        </div>
+                    @endif
                     <div class="flex items-center align-middle mb-3">
                         <img class="h-10 w-10" src="{{ asset('iconApp.svg') }}" alt="Siserviks Logo">
                         <span class="font-medium text-secondary ps-2">Si Serviks</span>
@@ -101,7 +102,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
 </body>
 
