@@ -22,7 +22,7 @@
                         <span class="font-medium text-secondary ps-2">Si Serviks</span>
                     </div>
                     <div>
-                        <h1 class="text-4xl text-secondary font-bold">Welcome!</h1>
+                        <h1 class="text-4xl text-accent1 font-bold">Welcome!</h1>
                         <p class="text-md text-secondary">Sign in to continue</p>
                     </div>
                     <div class="divide-y divide-gray-200 mt-5">
