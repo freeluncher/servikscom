@@ -114,6 +114,16 @@
                             <button type="submit"
                                 class="bg-secondary text-white font-semibold rounded-md px-20 py-1 mt-5 hover:bg-accent1 hover:text-accent2">Register</button>
                         </div>
+                        <hr class="bg-secondary h-1 rounded-md">
+                        <div class="relative text-center">
+                            <span class="text-sm">Already have an account?</span>
+                        </div>
+                        <div class="relative flex justify-center mt-4">
+                            <a href="{{ route('login') }}"
+                                class="bg-secondary text-white font-semibold rounded-md px-20 py-1 hover:bg-accent1 hover:text-accent2">
+                                Login
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>

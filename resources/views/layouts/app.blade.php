@@ -27,7 +27,6 @@
             max-height: 100vh;
         }
     </style>
-
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -36,41 +35,70 @@
             class="bg-primary shadow-slate-900/15 shadow-lg shadow-x-2 text-secondary w-64 min-h-screen hidden md:block transition-transform transform">
             <nav class="p-4">
                 <ul>
-                    <li class="mb-2"><a href="{{ route('dashboard') }}"
-                            class="block p-2 font-medium hover:bg-accent1 hover:text-accent2 hover:rounded-md">Home</a>
-                    </li>
+                    <div class="mb-2 flex items-center space-x-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">
+                        <i class="ms-2 fa-solid fa-house-medical"></i>
+                        <li>
+                            <a href="{{ route('dashboard') }}"
+                                class="block py-2 font-medium hover:bg-accent1 hover:text-accent2 hover:rounded-md">Home</a>
+                        </li>
+                    </div>
                     <li class="mb-2">
-                        <div class="mb-2">
-                            <i class="fa-solid fa-hospital-user"></i><button
-                                class="w-full text-left p-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md"
+                        <div
+                            class="mb-2 flex items-center space-x-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">
+                            <i class=" ms-2 fa-solid fa-hospital-user"></i>
+                            <button class="w-full text-left py-2 font-medium"
                                 onclick="toggleSubMenu('aboutSubMenu')">Pasien</button>
                         </div>
                         <ul id="aboutSubMenu"
                             class="pl-4 max-h-0 transition-max-height duration-300 ease-in-out overflow-hidden">
-                            <li class="mb-2"><a href="#"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">Tambah
-                                    Pasien</a></li>
-                            <li class="mb-2"><a href="#"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">Data
-                                    Pasien</a></li>
-                            <li class="mb-2"><a href="{{ route('medical_records.index') }}"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">Rekam
-                                    Medis</a></li>
+                            <div
+                                class="mb-2 flex items-center space-x-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">
+                                <i class="ms-2 fa-solid fa-square-plus"></i>
+                                <li><a href="#"
+                                        class="block py-2 font-medium hover:bg-accent1 hover:text-accent2 hover:rounded-md">Tambah
+                                        Pasien</a></li>
+                            </div>
+                            <div
+                                class="mb-2 flex items-center space-x-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">
+                                <i class="ms-2 fa-solid fa-clipboard-user"></i>
+                                <li><a href="#"
+                                        class="block py-2 font-medium hover:bg-accent1 hover:text-accent2 hover:rounded-md">Data
+                                        Pasien</a></li>
+                            </div>
+                            <div
+                                class="mb-2 flex items-center space-x-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">
+                                <i class="ms-2 fa-solid fa-book-medical"></i>
+                                <li><a href="{{ route('medical_records.index') }}"
+                                        class="block py-2 font-medium hover:bg-accent1 hover:text-accent2 hover:rounded-md">Rekam
+                                        Medis</a></li>
+                            </div>
                         </ul>
                     </li>
                     <li class="mb-2">
-                        <button class="w-full text-left p-2 hover:bg-accent1 hover:text-accent2"
-                            onclick="toggleSubMenu('servicesSubMenu')">Setting</button>
+                        <div class="flex items-center space-x-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">
+                            <i class="ms-2 fa-solid fa-gear"></i>
+                            <button class="w-full text-left font-medium py-2"
+                                onclick="toggleSubMenu('servicesSubMenu')">Setting</button>
+                        </div>
                         <ul id="servicesSubMenu"
                             class="pl-4 max-h-0 transition-max-height duration-300 ease-in-out overflow-hidden">
-                            <li class="mb-2"><a href="{{ route('profile.edit') }}"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Edit Profile</a></li>
-                            <li class="mb-2"><a href="#"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Support</a></li>
+                            <div
+                                class="flex items-center space-x-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">
+                                <i class="ms-2 fa-solid fa-user-pen"></i>
+                                <li><a href="{{ route('profile.edit') }}" class="block py-2">Edit Profile</a></li>
+                            </div>
+                            <div
+                                class="flex items-center space-x-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">
+                                <i class="ms-2 fa-solid fa-circle-info"></i>
+                                <li><a href="#" class="block py-2">Support</a>
+                                </li>
+                            </div>
                         </ul>
                     </li>
-                    <li class="mb-2"><a href="#"
-                            class="block p-2 hover:bg-accent1 hover:text-accent2">Schedule</a></li>
+                    <div class="flex items-center space-x-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">
+                        <i class="ms-2 fa-solid fa-calendar-days"></i>
+                        <li><a href="#" class="block py-2 font-medium">Schedule</a></li>
+                    </div>
                 </ul>
             </nav>
             <div class="container mx-auto my-auto w-50 p-2">
@@ -84,14 +112,15 @@
                         <p class="text-sm">{{ Auth::user()->name }}</p>
                         <a href="#" class="text-xs text-gray-400 hover:text-white">Settings</a>
                     </div>
-
                 </div>
-                <div class="contnainer p-2">
+                <div class="container p-2">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="text-secondary no-underline hover:underline">
-                            Logout
-                        </button>
+                        <div
+                            class="ms-2 p-2 flex items-center space-x-2 hover:bg-accent1 hover:text-accent2 hover:rounded-md">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <button type="submit" class="w-full text-left font-medium">Logout</button>
+                        </div>
                     </form>
                 </div>
             @else
@@ -105,23 +134,18 @@
                 <button id="hamburgerBtn" class="bg-blue-500 text-white p-2 rounded">Menu</button>
                 <ul id="mobileMenu" class="mt-4 hidden transition-opacity opacity-0">
                     <li class="mb-2"><a href="{{ url('/dashboard') }}"
-                            class="block p-2 hover:bg-accent1 hover:text-accent2">Dashboard</a>
-                    </li>
+                            class="block p-2 hover:bg-accent1 hover:text-accent2">Dashboard</a></li>
                     <li class="mb-2">
                         <button class="w-full text-left p-2 hover:bg-accent1 hover:text-accent2"
                             onclick="toggleSubMenu('mobileAboutSubMenu')">Pasien</button>
                         <ul id="mobileAboutSubMenu"
                             class="pl-4 max-h-0 transition-max-height duration-300 ease-in-out overflow-hidden">
                             <li class="mb-2"><a href="#"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Tambah Pasien</a>
-                            </li>
+                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Tambah Pasien</a></li>
                             <li class="mb-2"><a href="#"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Data Pasien</a>
-                            </li>
+                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Data Pasien</a></li>
                             <li class="mb-2"><a href="{{ route('medical_records.index') }}"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Rekam Medis
-                                    Pasien</a>
-                            </li>
+                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Rekam Medis Pasien</a></li>
                         </ul>
                     </li>
                     <li class="mb-2">
@@ -186,6 +210,7 @@
             sidebar.classList.remove('hidden', '-translate-x-full');
             mobileNav.classList.add('hidden');
         }
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
