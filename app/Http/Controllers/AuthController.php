@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -84,14 +85,25 @@ class AuthController extends Controller
     }
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => $data['role'],
             'nik' => $data['role'] === 'patient' ? $data['nik'] : null,
-            'is_approved' => $data['role'] === 'patient' ? true : false,
         ]);
+
+        if ($data['role'] === 'patient') {
+            Patient::create([
+                'user_id' => $user->id,
+                'nik' => $data['nik'],
+                'birth_date' => null,
+                'phone' => null,
+                'address' => null,
+            ]);
+        }
+
+        return $user;
     }
 
     public function showForgotPasswordForm()

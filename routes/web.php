@@ -8,6 +8,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\MedicalRecordController;
 use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,4 +73,6 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
     Route::get('/medical-records/{id}', [MedicalRecordController::class, 'show'])->name('medical_records.show');
     Route::get('/medical-records/{id}/edit', [MedicalRecordController::class, 'edit'])->name('medical_records.edit');
     Route::put('/medical-records/{id}', [MedicalRecordController::class, 'update'])->name('medical_records.update');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });

@@ -13,6 +13,8 @@ class Doctor extends Model
         'user_id',
         'nik',
         'birth_date',
+        'phone',
+        'address',
     ];
 
     public function user()

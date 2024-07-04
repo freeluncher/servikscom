@@ -36,7 +36,7 @@
             class="bg-primary shadow-slate-900/15 shadow-lg shadow-x-2 text-secondary w-64 min-h-screen hidden md:block transition-transform transform">
             <nav class="p-4">
                 <ul>
-                    <li class="mb-2"><a href="#"
+                    <li class="mb-2"><a href="{{ route('dashboard') }}"
                             class="block p-2 font-medium hover:bg-accent1 hover:text-accent2 hover:rounded-md">Home</a>
                     </li>
                     <li class="mb-2">
@@ -60,11 +60,11 @@
                     </li>
                     <li class="mb-2">
                         <button class="w-full text-left p-2 hover:bg-accent1 hover:text-accent2"
-                            onclick="toggleSubMenu('servicesSubMenu')">Services</button>
+                            onclick="toggleSubMenu('servicesSubMenu')">Setting</button>
                         <ul id="servicesSubMenu"
                             class="pl-4 max-h-0 transition-max-height duration-300 ease-in-out overflow-hidden">
-                            <li class="mb-2"><a href="#"
-                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Consulting</a></li>
+                            <li class="mb-2"><a href="{{ route('profile.edit') }}"
+                                    class="block p-2 hover:bg-accent1 hover:text-accent2">Edit Profile</a></li>
                             <li class="mb-2"><a href="#"
                                     class="block p-2 hover:bg-accent1 hover:text-accent2">Support</a></li>
                         </ul>
